@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import img from "../assets/others/authentication1.png"
 import { FcGoogle } from "react-icons/fc";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
+    const {loginUser} = useContext(AuthContext);
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     useEffect(() => {
@@ -16,7 +18,8 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form .password.value;
-        console.log(email, password);
+        // console.log(email, password);
+        
     };
 
     const handleValidateCaptcha = () => {
@@ -32,8 +35,8 @@ const Login = () => {
     };
 
     return (
-        <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')] bg-fixed bg-cover">
-            <div className="md:flex jus items-center gap-16 p-32">
+        <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')]  p-28 bg-fixed bg-cover">
+            <div className="md:flex jus items-center gap-16  border-4 rounded-lg shadow-2xl p-12">
                 <div>
                     <img className="w-[1100px]" src={img} alt="" />
                 </div>
