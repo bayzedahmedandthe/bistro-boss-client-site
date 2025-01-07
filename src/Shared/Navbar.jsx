@@ -1,0 +1,84 @@
+import { NavLink } from "react-router-dom";
+
+
+const Navbar = () => {
+    return (
+        <div className="navbar text-white bg-opacity-40 backdrop-blur-sm fixed z-20 bg-slate-700">
+            <div className="navbar-start">
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        <li className="text-xl font-semibold pr-6">
+                            <NavLink to="/" className={({ isActive }) => {
+                                return isActive ? "text-[#EEFF25] underline" : "";
+                            }}>Home</NavLink>
+                        </li>
+                        <li className="text-xl font-semibold ">
+                            <NavLink to="ourmenu" className={({ isActive }) => {
+                                return isActive ? "text-[#EEFF25] underline" : "";
+                            }}>Our Menu</NavLink>
+                        </li>
+                        <li className="text-xl font-semibold pl-6">
+                            <NavLink to="/orderfood/salad" className={({ isActive }) => {
+                                return isActive ? "text-[#EEFF25] underline" : "";
+                            }}>Order Food</NavLink>
+                        </li>
+                        <li className="text-xl font-semibold pl-6">
+                            <NavLink to="/login" className={({ isActive }) => {
+                                return isActive ? "text-[#EEFF25] underline" : "";
+                            }}>Login</NavLink>
+                        </li>
+                        </ul>
+                </div>
+                <a className="btn btn-ghost text-xl">daisyUI</a>
+            </div>
+            <div className="navbar-center hidden lg:flex items-center ml-[450px]">
+                <ul className="menu-horizontal text-white px-8">
+                    <li className="text-xl font-semibold pr-6">
+                        <NavLink to="/" className={({ isActive }) => {
+                            return isActive ? "text-[#EEFF25] underline" : "";
+                        }}>Home</NavLink>
+                    </li>
+                    <li className="text-xl font-semibold ">
+                        <NavLink to="ourmenu" className={({ isActive }) => {
+                            return isActive ? "text-[#EEFF25] underline" : "";
+                        }}>Our Menu</NavLink>
+                    </li>
+                    <li className="text-xl font-semibold pl-6">
+                        <NavLink to="/orderfood/salad" className={({ isActive }) => {
+                            return isActive ? "text-[#EEFF25] underline" : "";
+                        }}>Order Food</NavLink>
+                    </li>
+                    <li className="text-xl font-semibold pl-6">
+                        <NavLink to="/login" className={({ isActive }) => {
+                            return isActive ? "text-[#EEFF25] underline" : "";
+                        }}>Login</NavLink>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div className="navbar-end">
+
+                <a className="btn">Button</a>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
