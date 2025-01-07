@@ -1,7 +1,26 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "LogOut Successful",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
     return (
         <div className="navbar text-white bg-opacity-40 backdrop-blur-sm fixed z-20 bg-slate-700">
             <div className="navbar-start">
@@ -43,7 +62,7 @@ const Navbar = () => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
                             }}>Login</NavLink>
                         </li>
-                        </ul>
+                    </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
@@ -65,9 +84,15 @@ const Navbar = () => {
                         }}>Order Food</NavLink>
                     </li>
                     <li className="text-xl font-semibold pl-6">
-                        <NavLink to="/login" className={({ isActive }) => {
-                            return isActive ? "text-[#EEFF25] underline" : "";
-                        }}>Login</NavLink>
+                        {
+                            user ? <button onClick={handleLogOut}>
+                                <NavLink>LogOut</NavLink>
+                            </button>
+                                :
+                                <NavLink to="/login" className={({ isActive }) => {
+                                    return isActive ? "text-[#EEFF25] underline" : "";
+                                }}>Login</NavLink>
+                        }
                     </li>
 
 

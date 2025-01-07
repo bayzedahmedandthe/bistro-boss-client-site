@@ -5,32 +5,42 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const {loginUser} = useContext(AuthContext);
+    const { loginUser } = useContext(AuthContext);
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     useEffect(() => {
-        loadCaptchaEnginge(6); 
+        loadCaptchaEnginge(6);
     }, [])
-    const handleLogin =e => {
+    const handleLogin = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
-        const password = form .password.value;
+        const password = form.password.value;
         // console.log(email, password);
-        
+        loginUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successful",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
 
     const handleValidateCaptcha = () => {
         const user_captcha_value = captchaRef.current.value;
-        if(validateCaptcha(user_captcha_value)){
+        if (validateCaptcha(user_captcha_value)) {
             setDisabled(false);
             toast.success("Captcha matched")
-        }
-        else{
-            setDisabled(true)
-            // toast.error("Captcha not matched")
         }
     };
 
@@ -47,7 +57,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text text-lg font-medium">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="Type here" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="Enter Your email" className="input input-bordered" required />
                         </div>
                         <div className="form-control pb-1">
                             <label className="label">
@@ -56,7 +66,7 @@ const Login = () => {
                             <input type="password" name="password" placeholder="Enter Your Password" className="input input-bordered" required />
                         </div>
                         <div className="form-control pt-6">
-                        <p className="text-lg py-4 font-medium"><LoadCanvasTemplate /></p>
+                            <p className="text-lg py-4 font-medium"><LoadCanvasTemplate /></p>
                             <input type="text" name="captcha" ref={captchaRef} placeholder="Type here" className="input input-bordered" required />
                             <button onClick={handleValidateCaptcha} className=" my-4 max-w-[150px] bg-[#D1A054] py-1 text-lg rounded-lg">Validate</button>
                             {/* <label className="label ">
