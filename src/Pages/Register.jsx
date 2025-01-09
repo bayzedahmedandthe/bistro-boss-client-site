@@ -5,7 +5,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-    const {creatUser} = useContext(AuthContext);
+    const {creatUser, setUser, updateUserProfile} = useContext(AuthContext);
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
@@ -24,6 +24,13 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 2000
                 });
+                updateUserProfile({displayName: name, photoURL: photo})
+                .then(() => {
+                    setUser((previousUser) => {return {...previousUser, displayName: name, photoURL: photo}})
+                })
+                .catch(error => {
+                    console.log(error);
+                })
             })
             .catch(error => {
                 console.log(error);

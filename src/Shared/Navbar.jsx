@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaUserAlt } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -25,7 +26,7 @@ const Navbar = () => {
         <div className="navbar text-white bg-opacity-40 backdrop-blur-sm fixed z-20 bg-slate-700">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -41,7 +42,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow bg-yellow-700">
                         <li className="text-xl font-semibold pr-6">
                             <NavLink to="/" className={({ isActive }) => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
@@ -52,12 +53,12 @@ const Navbar = () => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
                             }}>Our Menu</NavLink>
                         </li>
-                        <li className="text-xl font-semibold pl-6">
+                        <li className="text-xl font-semibold">
                             <NavLink to="/orderfood/salad" className={({ isActive }) => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
                             }}>Order Food</NavLink>
                         </li>
-                        <li className="text-xl font-semibold pl-6">
+                        <li className="text-xl font-semibold">
                             <NavLink to="/login" className={({ isActive }) => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
                             }}>Login</NavLink>
@@ -83,24 +84,30 @@ const Navbar = () => {
                             return isActive ? "text-[#EEFF25] underline" : "";
                         }}>Order Food</NavLink>
                     </li>
-                    <li className="text-xl font-semibold pl-6">
-                        {
-                            user ? <button onClick={handleLogOut}>
-                                <NavLink>LogOut</NavLink>
-                            </button>
-                                :
-                                <NavLink to="/login" className={({ isActive }) => {
-                                    return isActive ? "text-[#EEFF25] underline" : "";
-                                }}>Login</NavLink>
-                        }
-                    </li>
 
 
+                    <li><Link to="/secret">Secret</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-
-                <a className="btn">Button</a>
+                <li className="text-xl font-semibold pl-6 list-none pr-6">
+                    {
+                        user ? <button onClick={handleLogOut}>
+                            <NavLink>LogOut</NavLink>
+                        </button>
+                            :
+                            <NavLink to="/login" className={({ isActive }) => {
+                                return isActive ? "text-[#EEFF25] underline" : "";
+                            }}>Login</NavLink>
+                    }
+                </li>
+                <div className="pr-8">
+                    {
+                        user? <img className="h-12 w-12 rounded-full" src={user.photoURL} alt="" />
+                        : 
+                      <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
+                    }
+                </div>
             </div>
         </div>
     );
