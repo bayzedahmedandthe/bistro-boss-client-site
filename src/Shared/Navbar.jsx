@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaUserAlt } from "react-icons/fa";
+import { BsCart3 } from "react-icons/bs";
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user?.photoURL);
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -84,9 +86,14 @@ const Navbar = () => {
                             return isActive ? "text-[#EEFF25] underline" : "";
                         }}>Order Food</NavLink>
                     </li>
-
-
-                    <li><Link to="/secret">Secret</Link></li>
+                    <li>
+                        <Link>
+                        <div className="pl-4 relative">
+                        <span className="text-4xl"><BsCart3 /></span>
+                        <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">0+</p>
+                        </div>
+                        </Link>
+                    </li>
                 </ul>
             </div>
             <div className="navbar-end">
@@ -103,9 +110,9 @@ const Navbar = () => {
                 </li>
                 <div className="pr-8">
                     {
-                        user? <img className="h-12 w-12 rounded-full" src={user.photoURL} alt="" />
-                        : 
-                      <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
+                        user ? <img className="h-12 w-12 rounded-full" src={user.photoURL} alt="" />
+                            :
+                            <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
                     }
                 </div>
             </div>

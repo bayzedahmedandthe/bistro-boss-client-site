@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/others/authentication1.png"
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Register = () => {
-    const {creatUser, setUser, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { creatUser, setUser, updateUserProfile } = useContext(AuthContext);
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
@@ -14,8 +16,16 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         // console.log(name, photo, email, password);
+        if (password.length < 6) {
+            return toast.error("password must be 6 cherecter")
+        }
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+        if (!passwordRegex.test(password)) {
+            return toast.error("password must be one uppercase one lowercase")
+        }
         creatUser(email, password)
             .then(result => {
+                navigate("/")
                 console.log(result.user);
                 Swal.fire({
                     position: "center",
@@ -24,13 +34,13 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                updateUserProfile({displayName: name, photoURL: photo})
-                .then(() => {
-                    setUser((previousUser) => {return {...previousUser, displayName: name, photoURL: photo}})
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        setUser((previousUser) => { return { ...previousUser, displayName: name, photoURL: photo } })
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
             .catch(error => {
                 console.log(error);
