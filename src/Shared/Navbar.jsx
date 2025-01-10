@@ -7,7 +7,6 @@ import { BsCart3 } from "react-icons/bs";
 import { MdLogin, MdLogout } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 
-
 const Navbar = () => {
     const [cart] = useCart();
     const { user, logOut } = useContext(AuthContext);
@@ -49,19 +48,16 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow bg-yellow-700">
                         <li className="text-xl font-semibold pr-6">
-                            <NavLink to="/" className={({ isActive }) => {
-                                return isActive ? "text-[#EEFF25] underline" : "";
-                            }}>Home</NavLink>
+                            <NavLink to="/">Home</NavLink>
+                        </li>
+                        <li className="text-xl font-semibold pr-6">
+                            <NavLink to="/deshboard/userHome" >Deshboard</NavLink>
                         </li>
                         <li className="text-xl font-semibold ">
-                            <NavLink to="ourmenu" className={({ isActive }) => {
-                                return isActive ? "text-[#EEFF25] underline" : "";
-                            }}>Our Menu</NavLink>
+                            <NavLink to="ourmenu" >Our Menu</NavLink>
                         </li>
                         <li className="text-xl font-semibold">
-                            <NavLink to="/orderfood/salad" className={({ isActive }) => {
-                                return isActive ? "text-[#EEFF25] underline" : "";
-                            }}>Order Food</NavLink>
+                            <NavLink to="/orderfood/salad">Order Food</NavLink>
                         </li>
                         <li>
                             <Link>
@@ -72,25 +68,22 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="text-xl font-semibold">
-                            <NavLink to="/login" className={({ isActive }) => {
-                                return isActive ? "text-[#EEFF25] underline" : "";
-                            }}>Login</NavLink>
+                            <NavLink to="/login" >Login</NavLink>
                         </li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
-            <div className="navbar-center hidden lg:flex items-center ml-[450px]">
+            <div className="navbar-center hidden lg:flex items-center lg:ml-[350px]">
                 <ul className="menu-horizontal text-white px-8">
                     <li className="text-xl font-semibold pr-6">
-                        <NavLink to="/" className={({ isActive }) => {
-                            return isActive ? "text-[#EEFF25] underline" : "";
-                        }}>Home</NavLink>
+                        <NavLink to="/" >Home</NavLink>
+                    </li>
+                    <li className="text-xl font-semibold pr-6">
+                        <NavLink to="/deshboard/userHome" >Deshboard</NavLink>
                     </li>
                     <li className="text-xl font-semibold ">
-                        <NavLink to="ourmenu" className={({ isActive }) => {
-                            return isActive ? "text-[#EEFF25] underline" : "";
-                        }}>Our Menu</NavLink>
+                        <NavLink to="ourmenu" >Our Menu</NavLink>
                     </li>
                     <li className="text-xl font-semibold pl-6">
                         <NavLink to="/orderfood/salad" className={({ isActive }) => {
@@ -98,7 +91,7 @@ const Navbar = () => {
                         }}>Order Food</NavLink>
                     </li>
                     <li>
-                        <Link>
+                        <Link to="/deshboard/mycart">
                             <div className="pl-4 relative">
                                 <span className="text-4xl"><BsCart3 /></span>
                                 <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
@@ -108,15 +101,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <li className="text-xl font-semibold pl-6 list-none pr-6">
+                <li className="text-xl font-semibold  list-none pr-6">
                     {
-                        user ? <NavLink> <button onClick={handleLogOut} className="flex items-center gap-1 ">
+                        user ? <Link> <button onClick={handleLogOut} className="flex items-center gap-1 ">
                             LogOut<MdLogout></MdLogout>
-                        </button></NavLink>
+                        </button></Link>
                             :
-                            <NavLink to="/login" className={({ isActive }) => {
-                                return isActive ? "text-[#EEFF25] underline" : "";
-                            }}>
+                            <NavLink to="/login">
                                 <h2 className="flex items-center gap-1"><span>Login</span> <MdLogin></MdLogin></h2>
                             </NavLink>
                     }

@@ -18,7 +18,8 @@ const MenuCard = ({ item }) => {
                 menuId: item._id,
                 email: user.email,
                 name: item.name,
-                price: item.price
+                price: item.price,
+                image: item.image
             }
             axiosSecure.post("/carts", cartItem)
                 .then(res => {
