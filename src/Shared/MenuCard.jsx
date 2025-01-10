@@ -2,15 +2,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useCart from "../Hooks/useCart";
 
 
 const MenuCard = ({ item }) => {
+    const [ , refetch] = useCart();
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSecure();
-    const handleAddToCart = food => {
+    const handleAddToCart = () => {
         if (user && user.email) {
+
             const cartItem = {
                 menuId: item._id,
                 email: user.email,
@@ -25,8 +28,9 @@ const MenuCard = ({ item }) => {
                         icon: "success",
                         title: `${item.name} added to your cart`,
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     });
+                    refetch();
                 })
         }
         else {
@@ -55,7 +59,7 @@ const MenuCard = ({ item }) => {
             <p className="text-center ">{item.recipe}</p>
             <div className="flex justify-center">
                 <button
-                    onClick={() => handleAddToCart(item)}
+                    onClick={ handleAddToCart }
                     className="border-b-2 border-b-yellow-700 rounded-lg hover:bg-slate-800 hover:text-white text-yellow-700 bg-slate-300 uppercase px-6 py-2 my-8 text-center">Add To Cart</button>
             </div>
         </div>

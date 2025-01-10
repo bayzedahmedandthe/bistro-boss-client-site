@@ -4,9 +4,12 @@ import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaUserAlt } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
+import { MdLogin, MdLogout } from "react-icons/md";
+import useCart from "../Hooks/useCart";
 
 
 const Navbar = () => {
+    const [cart] = useCart();
     const { user, logOut } = useContext(AuthContext);
     console.log(user?.photoURL);
     const handleLogOut = () => {
@@ -60,6 +63,14 @@ const Navbar = () => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
                             }}>Order Food</NavLink>
                         </li>
+                        <li>
+                            <Link>
+                                <div className="pl-4 relative">
+                                    <span className="text-4xl"><BsCart3 /></span>
+                                    <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">0+</p>
+                                </div>
+                            </Link>
+                        </li>
                         <li className="text-xl font-semibold">
                             <NavLink to="/login" className={({ isActive }) => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
@@ -88,10 +99,10 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link>
-                        <div className="pl-4 relative">
-                        <span className="text-4xl"><BsCart3 /></span>
-                        <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">0+</p>
-                        </div>
+                            <div className="pl-4 relative">
+                                <span className="text-4xl"><BsCart3 /></span>
+                                <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
+                            </div>
                         </Link>
                     </li>
                 </ul>
@@ -99,18 +110,20 @@ const Navbar = () => {
             <div className="navbar-end">
                 <li className="text-xl font-semibold pl-6 list-none pr-6">
                     {
-                        user ? <button onClick={handleLogOut}>
-                            <NavLink>LogOut</NavLink>
-                        </button>
+                        user ? <NavLink> <button onClick={handleLogOut} className="flex items-center gap-1 ">
+                            LogOut<MdLogout></MdLogout>
+                        </button></NavLink>
                             :
                             <NavLink to="/login" className={({ isActive }) => {
                                 return isActive ? "text-[#EEFF25] underline" : "";
-                            }}>Login</NavLink>
+                            }}>
+                                <h2 className="flex items-center gap-1"><span>Login</span> <MdLogin></MdLogin></h2>
+                            </NavLink>
                     }
                 </li>
                 <div className="pr-8">
                     {
-                        user ? <img className="h-12 w-12 rounded-full" src={user.photoURL} alt="" />
+                        user ? <img className="h-10 w-10 rounded-full" src={user.photoURL} alt="" />
                             :
                             <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
                     }
