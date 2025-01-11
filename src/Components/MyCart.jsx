@@ -1,11 +1,39 @@
 import { FaTrash } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 const MyCart = () => {
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+    const axiosSecure = useAxiosSecure();
+    const handleDelete = _id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/carts/${_id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
     return (
         <div>
             <SectionTitle heading={"Wanna Add More?"} subHeading={"My Cart"}></SectionTitle>
@@ -30,9 +58,9 @@ const MyCart = () => {
                             </thead>
                             <tbody>
                                 {
-                                    cart.map((item, idx) => 
-                                <tr>
-                                    <td className="text-lg">{idx+1}</td>
+                                    cart.map((item, idx) =>
+                                        <tr key={item._id}>
+                                            <td className="text-lg">{idx + 1}</td>
                                             <td>
                                                 <div className="flex items-center gap-3">
                                                     <div className="avatar">
@@ -49,10 +77,10 @@ const MyCart = () => {
                                             </td>
                                             <td className="text-lg">{item.price}</td>
                                             <th>
-                                                <button className="btn  text-orange-600 text-lg"><FaTrash></FaTrash></button>
+                                                <button onClick={() => handleDelete(item._id)} className="btn  text-orange-600 text-lg"><FaTrash></FaTrash></button>
                                             </th>
                                         </tr>
-                                        )
+                                    )
                                 }
 
                             </tbody>

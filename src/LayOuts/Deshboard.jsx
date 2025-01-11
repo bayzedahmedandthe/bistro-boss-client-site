@@ -39,7 +39,7 @@ const Deshboard = () => {
                 <li><NavLink to="/ourmenu" className={({ isActive }) => {
                         return isActive ? " text-white" : "";
                     }}><h3 className="flex items-center gap-1 text-xl py-4 md:px-6"><span><TbBrandBooking /></span>menu</h3></NavLink></li>
-                <li><NavLink to="/orderfood" className={({ isActive }) => {
+                <li><NavLink to="/orderfood/salad" className={({ isActive }) => {
                         return isActive ? " text-white" : "";
                     }}><h3 className="flex items-center gap-1 text-xl py-4 md:px-6"><span><TbBrandBooking /></span>Order Food</h3></NavLink></li>
                 </ul>
