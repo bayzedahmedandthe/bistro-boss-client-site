@@ -14,6 +14,7 @@ import Reservation from "../Components/Reservation";
 import AddReview from "../Components/AddReview";
 import MyBooking from "../Components/MyBooking";
 import PaymentHistory from "../Components/PaymentHistory";
+import PrivetRoute from "./PrivetRoute";
 
    const router = createBrowserRouter([
     {
@@ -46,7 +47,7 @@ import PaymentHistory from "../Components/PaymentHistory";
     },
     {
       path: "deshboard",
-      element:<Deshboard></Deshboard>,
+      element: <PrivetRoute><Deshboard></Deshboard></PrivetRoute>,
       children: [
         {
           path: "userHome",

@@ -4,8 +4,11 @@ import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import SocialLogin from "../Shared/SocialLogin";
 
 const Register = () => {
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const { creatUser, setUser, updateUserProfile } = useContext(AuthContext);
     const handleRegister = e => {
@@ -27,13 +30,22 @@ const Register = () => {
             .then(result => {
                 navigate("/")
                 console.log(result.user);
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Registation Successful",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                const userInfo = {
+                    name: result?.user?.displayName,
+                    email: result?.user?.email
+                }
+                axiosPublic.post("/users", userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Registation Successful",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    })
+
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(() => {
                         setUser((previousUser) => { return { ...previousUser, displayName: name, photoURL: photo } })
@@ -78,6 +90,7 @@ const Register = () => {
                         </div>
                         <button className="w-full my-12 text-lg font-semibold bg-[#D1A054] btn hover:bg-[#D1A054]">Register</button>
                     </form>
+                    <SocialLogin></SocialLogin>
                     <div className="text-[#D1A054] text-center py-2">
                         <Link to="/login">Already Registered? Go to login</Link>
                     </div>

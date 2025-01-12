@@ -1,13 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../assets/others/authentication1.png"
-import { FcGoogle } from "react-icons/fc";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import auth from "../../firebase.config";
+import SocialLogin from "../Shared/SocialLogin";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -55,25 +53,6 @@ const Login = () => {
             setDisabled(true);
         }
     };
-
-    const provider = new GoogleAuthProvider();
-    const handleLoginWithGoogle = () => {
-        signInWithPopup(auth, provider)
-            .then(result => {
-                navigate(from, { replace: true })
-                console.log(result.user);
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Login Successful",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
     return (
         <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')]  p-28 bg-fixed bg-cover">
             <div className="md:flex jus items-center gap-16  border-4 rounded-lg shadow-2xl p-12">
@@ -103,12 +82,9 @@ const Login = () => {
                             <input disabled={disabled} type="submit" value="Login" className="input input-bordered text-lg font-semibold bg-[#D1A054] btn hover:bg-[#D1A054]" required />
                         </div>
                     </form>
-                    <div className="text-[#D1A054] text-center py-10">
+                    <SocialLogin></SocialLogin>
+                    <div className="text-[#D1A054] text-center py-6">
                         <Link to="/register">New here? Create a New Account</Link>
-                    </div>
-                    <div className="flex items-center gap-4 justify-center">
-                        <p className="text-lg">Or Sign in with</p>
-                        <button onClick={handleLoginWithGoogle} className="text-2xl border-2 border-[#D1A054] rounded-full p-2"> <FcGoogle></FcGoogle></button>
                     </div>
                 </div>
             </div>

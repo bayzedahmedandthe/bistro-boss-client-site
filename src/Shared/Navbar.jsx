@@ -6,11 +6,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { MdLogin, MdLogout } from "react-icons/md";
 import useCart from "../Hooks/useCart";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
     const [cart] = useCart();
     const { user, logOut } = useContext(AuthContext);
-    console.log(user?.photoURL);
+    // console.log(user?.photoURL);
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -25,6 +26,17 @@ const Navbar = () => {
             .catch(error => {
                 console.log(error);
             })
+    }
+    const handleDeshBoard = () => {
+        if (!user) {
+            return toast.error("You are not logged In. Please LogIn Now");
+
+        }
+    }
+    const handleCart = () => {
+        if(!user){
+            return toast.error("You are not logged In. Please LogIn Now");
+        }
     }
     return (
         <div className="navbar text-white bg-opacity-40 backdrop-blur-sm fixed z-20 bg-slate-700">
@@ -51,7 +63,7 @@ const Navbar = () => {
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li className="text-xl font-semibold pr-6">
-                            <NavLink to="/deshboard/userHome" >Deshboard</NavLink>
+                            <button onClick={handleDeshBoard}><NavLink to="/deshboard/userHome" >Deshboard</NavLink></button>
                         </li>
                         <li className="text-xl font-semibold ">
                             <NavLink to="ourmenu" >Our Menu</NavLink>
@@ -60,12 +72,14 @@ const Navbar = () => {
                             <NavLink to="/orderfood/salad">Order Food</NavLink>
                         </li>
                         <li>
-                            <Link>
-                                <div className="pl-4 relative">
-                                    <span className="text-4xl"><BsCart3 /></span>
-                                    <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">0+</p>
-                                </div>
-                            </Link>
+                            <button onClick={handleCart}>
+                                <Link to="/deshboard/mycart">
+                                    <div className="pl-4 relative">
+                                        <span className="text-4xl"><BsCart3 /></span>
+                                        <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
+                                    </div>
+                                </Link>
+                            </button>
                         </li>
                         <li className="text-xl font-semibold">
                             <NavLink to="/login" >Login</NavLink>
@@ -80,7 +94,7 @@ const Navbar = () => {
                         <NavLink to="/" >Home</NavLink>
                     </li>
                     <li className="text-xl font-semibold pr-6">
-                        <NavLink to="/deshboard/userHome" >Deshboard</NavLink>
+                        <button onClick={handleDeshBoard}><NavLink to="/deshboard/userHome" >Deshboard</NavLink></button>
                     </li>
                     <li className="text-xl font-semibold ">
                         <NavLink to="ourmenu" >Our Menu</NavLink>
@@ -91,12 +105,14 @@ const Navbar = () => {
                         }}>Order Food</NavLink>
                     </li>
                     <li>
-                        <Link to="/deshboard/mycart">
-                            <div className="pl-4 relative">
-                                <span className="text-4xl"><BsCart3 /></span>
-                                <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
-                            </div>
-                        </Link>
+                        <button onClick={handleCart}>
+                            <Link to="/deshboard/mycart">
+                                <div className="pl-4 relative">
+                                    <span className="text-4xl"><BsCart3 /></span>
+                                    <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
+                                </div>
+                            </Link>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -114,7 +130,7 @@ const Navbar = () => {
                 </li>
                 <div className="pr-8">
                     {
-                        user ? <img className="h-10 w-10 rounded-full" src={user.photoURL} alt="" />
+                        user ? <img className="h-12 w-12 rounded-full" src={user.photoURL} alt="" />
                             :
                             <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
                     }
