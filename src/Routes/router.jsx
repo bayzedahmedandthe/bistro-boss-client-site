@@ -15,6 +15,12 @@ import AddReview from "../Components/AddReview";
 import MyBooking from "../Components/MyBooking";
 import PaymentHistory from "../Components/PaymentHistory";
 import PrivetRoute from "./PrivetRoute";
+import AdminHome from "../Components/adminHome";
+import AddItems from "../Components/AddItems";
+import ManageItems from "../Components/ManageItems";
+import ManageBookings from "../Components/ManageBookings";
+import AllUsers from "../Components/AllUsers";
+
 
    const router = createBrowserRouter([
     {
@@ -50,7 +56,7 @@ import PrivetRoute from "./PrivetRoute";
       element: <PrivetRoute><Deshboard></Deshboard></PrivetRoute>,
       children: [
         {
-          path: "userHome",
+          path: "home",
           element: <UserHome></UserHome>
         },
         {
@@ -72,6 +78,26 @@ import PrivetRoute from "./PrivetRoute";
         {
           path: "payment", 
           element: <PaymentHistory></PaymentHistory>
+        },
+        {
+          path: "homeAdmin",
+          element: <AdminHome></AdminHome>
+        },
+        {
+          path: "addItems", 
+          element: <AddItems></AddItems>
+        },
+        {
+          path: "manageItems",
+          element: <ManageItems></ManageItems>
+        },
+        {
+          path: "manageBookings", 
+          element: <ManageBookings></ManageBookings>
+        },
+        {
+          path: "allUsers",
+          element: <AllUsers></AllUsers>
         }
       ]
     }

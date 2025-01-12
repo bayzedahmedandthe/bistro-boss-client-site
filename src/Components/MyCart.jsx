@@ -41,13 +41,13 @@ const MyCart = () => {
                 <div className="flex items-center justify-between p-4">
                     <h2 className="text-2xl uppercase">Total Orders: {cart.length}</h2>
                     <h2 className="text-2xl uppercase">Total Price: {totalPrice}</h2>
-                    <button className="uppercase bg-[#D1A054] md:text-lg rounded-lg px-6 py-2">Pay</button>
+                    <button className="uppercase bg-[#D1A054] md:text-lg rounded-lg px-8 py-4">Pay</button>
                 </div>
                 <div>
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto px-8">
                         <table className="table">
                             {/* head */}
-                            <thead>
+                            <thead className="text-white bg-[#D1A054]">
                                 <tr>
                                     <th className="text-xl">NO.</th>
                                     <th className="text-xl">Item Image</th>
