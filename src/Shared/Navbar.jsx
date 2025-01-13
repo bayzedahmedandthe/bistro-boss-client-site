@@ -7,10 +7,8 @@ import { BsCart3 } from "react-icons/bs";
 import { MdLogin, MdLogout } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 import { toast } from "react-toastify";
-import { isAdmin } from "../LayOuts/Deshboard";
 
 const Navbar = () => {
-    const admin = isAdmin;
     const [cart] = useCart();
     const { user, logOut } = useContext(AuthContext);
     // console.log(user?.photoURL);
@@ -65,10 +63,9 @@ const Navbar = () => {
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li className="text-xl font-semibold pr-6">
-                            {
-                                admin ? <button onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button> :
-                                    <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
-                            }
+                            <li className="text-xl font-semibold pr-6">
+                                <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
+                            </li>
                         </li>
                         <li className="text-xl font-semibold ">
                             <NavLink to="ourmenu" >Our Menu</NavLink>
@@ -99,10 +96,7 @@ const Navbar = () => {
                         <NavLink to="/" >Home</NavLink>
                     </li>
                     <li className="text-xl font-semibold pr-6">
-                        {
-                            admin ? <button onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button> :
-                                <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
-                        }
+                        <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
                     </li>
                     <li className="text-xl font-semibold ">
                         <NavLink to="ourmenu" >Our Menu</NavLink>

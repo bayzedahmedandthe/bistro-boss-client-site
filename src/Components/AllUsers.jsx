@@ -84,7 +84,7 @@ const AllUsers = () => {
                                             </td>
                                             <td className="text-lg">{user.email}</td>
                                             <td>
-                                                { user.role === "admin" ? <h4 className="text-lg font-semibold">Admin</h4> : <button onClick={() => handleMakeAdmin(user)} className="bg-[#D1A054] text-lg p-4 btn text-white"><FaUsers></FaUsers></button>}
+                                                {user.role === "admin" ? <h4 className="text-lg font-semibold">Admin</h4> : <button onClick={() => handleMakeAdmin(user)} className="bg-[#D1A054] text-lg p-4 btn text-white"><FaUsers></FaUsers></button>}
                                             </td>
                                             <td>
                                                 <button onClick={() => handleDelete(user._id)} className="btn text-orange-600 text-lg"><FaTrash></FaTrash></button>

@@ -4,10 +4,12 @@ import { LiaStarSolid } from "react-icons/lia";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { TbBrandBooking } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
-export const isAdmin = true;
+
 
 const Deshboard = () => {
+    const [isAdmin] = useAdmin();
     return (
         <div className="flex">
             <div className="bg-[#D1A054] min-h-screen w-1/5">
