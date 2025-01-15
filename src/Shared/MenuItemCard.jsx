@@ -6,7 +6,7 @@ const MenuItemCard = ({ items, title }) => {
             <div className="max-w-[1000px] mx-auto grid md:grid-cols-2 gap-4 mt-16">
                 {
                     items.map(item =>
-                        <div className="flex items-center gap-4">
+                        <div key={item._id} className="flex items-center gap-4">
                             <img className="h-20 w-20 rounded-b-full rounded-r-full" src={item.image} alt="" />
                             <div>
                                 <h3 className="text-2xl font-medium py-2">{item.name}------</h3>

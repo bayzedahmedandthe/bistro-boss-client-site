@@ -20,6 +20,8 @@ import AddItems from "../Components/AddItems";
 import ManageItems from "../Components/ManageItems";
 import ManageBookings from "../Components/ManageBookings";
 import AllUsers from "../Components/AllUsers";
+import UpdateItems from "../Components/UpdateItems";
+import AdminRoute from "./AdminRoute";
 
 
    const router = createBrowserRouter([
@@ -98,6 +100,10 @@ import AllUsers from "../Components/AllUsers";
         {
           path: "allUsers",
           element: <AllUsers></AllUsers>
+        }, {
+          path: "updateItem/:id",
+          element: <AdminRoute><UpdateItems></UpdateItems></AdminRoute>,
+          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
         }
       ]
     }

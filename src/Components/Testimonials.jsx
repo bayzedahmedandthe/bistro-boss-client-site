@@ -32,7 +32,7 @@ const Testimonials = () => {
 
                 {
                     rating.map(item =>
-                        <SwiperSlide>
+                        <SwiperSlide key={item._id}>
                             <div className="py-8">
                                 <div className="flex justify-center pb-6">
                                     <Rating
