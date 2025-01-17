@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const UpdateItems = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate();j
     const { name, price, category, recipe, _id } = useLoaderData();
     // console.log(menuData);
     const axiosSecure = useAxiosSecure();

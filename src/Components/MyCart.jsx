@@ -3,6 +3,7 @@ import useCart from "../Hooks/useCart";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const MyCart = () => {
@@ -41,7 +42,9 @@ const MyCart = () => {
                 <div className="flex items-center justify-between p-4">
                     <h2 className="text-2xl uppercase">Total Orders: {cart.length}</h2>
                     <h2 className="text-2xl uppercase">Total Price: {totalPrice}</h2>
-                    <button className="uppercase bg-[#D1A054] md:text-lg rounded-lg px-8 py-4">Pay</button>
+                    <Link to="/deshboard/payment">
+                        <button className="uppercase bg-[#D1A054] md:text-lg rounded-lg px-8 py-4">Pay</button>
+                    </Link>
                 </div>
                 <div>
                     <div className="overflow-x-auto px-8">

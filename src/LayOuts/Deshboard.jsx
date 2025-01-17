@@ -65,7 +65,7 @@ const Deshboard = () => {
                                         <h3 className="flex items-center gap-1 text-xl py-4 md:px-6"><span><FaCalendarDays /></span> Reservation</h3></NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/deshboard/payment" className={({ isActive }) => {
+                                    <NavLink to="/deshboard/paymentHistry" className={({ isActive }) => {
                                         return isActive ? " text-white" : "";
                                     }}>
                                         <h3 className="flex items-center gap-1 text-xl py-4 px-6"><span><RiSecurePaymentFill /></span>Payment Histry</h3></NavLink>
