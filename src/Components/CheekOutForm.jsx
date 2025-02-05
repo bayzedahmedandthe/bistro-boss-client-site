@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useCart from "../Hooks/useCart";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const CheekOutForm = () => {
@@ -14,15 +16,18 @@ const CheekOutForm = () => {
     const [clientSecret, setClientSecret] = useState("");
     const { user } = useAuth();
     const [transactionId, setTransactionId] = useState("");
+    const naviagte = useNavigate();
 
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0)
     useEffect(() => {
-        axiosSecure.post("/create-payment-intent", { price: totalPrice })
-            .then(res => {
-                console.log(res.data.clientSecret);
-                setClientSecret(res.data.clientSecret);
-            })
+        if (totalPrice > 0) {
+            axiosSecure.post("/create-payment-intent", { price: totalPrice })
+                .then(res => {
+                    console.log(res.data.clientSecret);
+                    setClientSecret(res.data.clientSecret);
+                })
+        }
     }, [axiosSecure, totalPrice])
 
     const handleSubmit = async (e) => {
@@ -62,7 +67,25 @@ const CheekOutForm = () => {
         else {
             console.log("paymentIntent", paymentIntent);
             if (paymentIntent.status === "succeeded") {
-                setTransactionId(paymentIntent.id)
+                setTransactionId(paymentIntent.id);
+                // now save the payment in the database
+                const payment = {
+                    email: user?.email,
+                    price: totalPrice,
+                    transactionId: paymentIntent.id,
+                    date: new Date(),
+                    cartIds: cart.map(item => item._id),
+                    menuItemIds: cart.map(item => item.menuId),
+                    status: "pending"
+                };
+                const res = await axiosSecure.post("payment", payment)
+                console.log("payment save", res.data);
+                Swal.fire({
+                    title: "Success your payment",
+                    icon: "success",
+                    draggable: true
+                });
+                naviagte("/deshboard/paymentHistry")
             }
         }
 
@@ -90,7 +113,7 @@ const CheekOutForm = () => {
                     <button className="md:px-8 py-2 px-4 border-2 mt-8 bg-[#D1A054] btn" type="submit" disabled={!stripe || !clientSecret}>
                         Pay
                     </button>
-                    <p className="text-gray-600 border-b-2 mt-8">{transactionId}</p>
+                    <p className="text-gray-600 border-b-2 mt-8"><span className="text-black font-bold">Your Transaction Id: </span>{transactionId}</p>
                 </div>
             </form>
         </div>
