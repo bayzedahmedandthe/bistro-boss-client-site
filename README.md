@@ -1,6 +1,6 @@
 # Bistro boss
 * This is an e-commerce website where you can order your favorite food
- - ## Live page link: https://assaignment-11-5c7ac.web.app/
+ - ## Live page link: https://bistro-boss-3bc7d.web.app/
  *** 
 - ## Used key features:
 * Clicing on the navbar login button  redirect to the user login page.
