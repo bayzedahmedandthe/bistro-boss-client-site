@@ -54,8 +54,8 @@ const Login = () => {
         }
     };
     return (
-        <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')]  p-28 bg-fixed bg-cover">
-            <div className="md:flex jus items-center gap-16  border-4 rounded-lg shadow-2xl p-12">
+        <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')] md:p-28 bg-fixed bg-cover">
+            <div className="md:flex items-center gap-16 rounded-lg shadow-2xl p-12">
                 <div>
                     <img className="w-[1100px]" src={img} alt="" />
                 </div>
@@ -84,7 +84,7 @@ const Login = () => {
                     </form>
                     <SocialLogin></SocialLogin>
                     <div className="text-[#D1A054] text-center py-6">
-                        <Link to="/register">New here? Create a New Account</Link>
+                         <p >Already Registered? <Link to="/register" className="text-xl font-semibold hover:underline">Go to register</Link></p>
                     </div>
                 </div>
             </div>

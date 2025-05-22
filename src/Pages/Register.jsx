@@ -59,11 +59,14 @@ const Register = () => {
             })
     }
     return (
-        <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')]  p-28 bg-fixed bg-cover">
-            <div className="md:flex jus items-center gap-16  border-4 rounded-lg shadow-2xl p-12">
+        <div className="bg-[url('https://i.ibb.co.com/nwjym1j/authentication.png')] md:p-28 bg-fixed bg-cover">
+            <div className="md:flex items-center gap-16 rounded-lg shadow-2xl p-12">
+                <div>
+                    <img className="w-[1100px]" src={img} alt="" />
+                </div>
                 <div className="lg:max-w-[900px] w-full">
-                    <h2 className="text-2xl font-medium text-center py-4">Register</h2>
                     <form onSubmit={handleRegister}>
+                        <h2 className="text-2xl font-medium text-center py-4">Register</h2>
                         <div className="form-control py-2">
                             <label className="label">
                                 <span className="label-text text-lg font-medium">Name</span>
@@ -88,15 +91,12 @@ const Register = () => {
                             </label>
                             <input type="password" name="password" placeholder="Enter Your Password" className="input input-bordered" required />
                         </div>
-                        <button className="w-full my-12 text-lg font-semibold bg-[#D1A054] btn hover:bg-[#D1A054]">Register</button>
+                        <button className="w-full my-6 text-lg font-semibold bg-[#D1A054] btn hover:bg-[#D1A054]">Register</button>
                     </form>
                     <SocialLogin></SocialLogin>
                     <div className="text-[#D1A054] text-center py-2">
-                        <Link to="/login">Already Registered? Go to login</Link>
+                        <p >Already Registered? <Link to="/login" className="text-xl font-semibold hover:underline">Go to login</Link></p>
                     </div>
-                </div>
-                <div>
-                    <img className="w-[1100px]" src={img} alt="" />
                 </div>
             </div>
         </div>

@@ -60,62 +60,62 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow bg-yellow-700">
-                        <li className="text-xl font-semibold pr-6">
+                        className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow bg-slate-800">
+                        <li className="text-xl  pr-6">
                             <NavLink to="/">Home</NavLink>
                         </li>
-                        <li className="text-xl font-semibold pr-6">
+                        <li className="pr-6">
                             {
-                                isAdmin ? <p className="text-xl font-semibold pr-6">
+                                isAdmin ? <p className=" pr-6">
                                     <button onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button>
                                 </p>
                                     :
-                                    <p className="text-xl font-semibold pr-6">
+                                    <p className=" pr-6">
                                         <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
                                     </p>
                             }
                         </li>
-                        <li className="text-xl font-semibold ">
+                        <li className="text-xl  ">
                             <NavLink to="ourmenu" >Our Menu</NavLink>
                         </li>
-                        <li className="text-xl font-semibold">
+                        <li className="text-xl ">
                             <NavLink to="/orderfood/salad">Order Food</NavLink>
                         </li>
                         <li>
                             <button onClick={handleCart}>
                                 <Link to="/deshboard/mycart">
-                                    <div className="pl-4 relative">
-                                        <span className="text-4xl"><BsCart3 /></span>
-                                        <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
+                                    <div className="relative">
+                                        <span className="text-2xl"><BsCart3 /></span>
+                                        <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-2 -right-5 px-1">+{cart.length}</p>
                                     </div>
                                 </Link>
                             </button>
                         </li>
-                        <li className="text-xl font-semibold">
+                        <li className="text-xl ">
                             <NavLink to="/login" >Login</NavLink>
                         </li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to="/" className="md:pl-4 pl-0 text-xl cursor-pointer">Bistro Boss</Link>
             </div>
             <div className="navbar-center hidden lg:flex items-center lg:ml-[350px]">
                 <ul className="menu-horizontal text-white px-8">
-                    <li className="text-xl font-semibold pr-6">
+                    <li className="text-xl pr-6">
                         <NavLink to="/" >Home</NavLink>
                     </li>
                     {
-                        isAdmin ? <p className="text-xl font-semibold pr-6">
+                        isAdmin ? <p className="text-xl pr-6">
                             <button onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button>
                         </p>
                             :
-                            <p className="text-xl font-semibold pr-6">
+                            <p className="text-xl pr-6">
                                 <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
                             </p>
                     }
-                    <li className="text-xl font-semibold ">
+                    <li className="text-xl">
                         <NavLink to="ourmenu" >Our Menu</NavLink>
                     </li>
-                    <li className="text-xl font-semibold pl-6">
+                    <li className="text-xl pl-6">
                         <NavLink to="/orderfood/salad" className={({ isActive }) => {
                             return isActive ? "text-[#EEFF25] underline" : "";
                         }}>Order Food</NavLink>
@@ -124,7 +124,7 @@ const Navbar = () => {
                         <button onClick={handleCart}>
                             <Link to="/deshboard/mycart">
                                 <div className="pl-4 relative">
-                                    <span className="text-4xl"><BsCart3 /></span>
+                                    <span className="text-3xl"><BsCart3 /></span>
                                     <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
                                 </div>
                             </Link>
@@ -133,20 +133,20 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <li className="text-xl font-semibold  list-none pr-6">
+                <li className="text-xl list-none pr-6">
                     {
-                        user ? <Link> <button onClick={handleLogOut} className="flex items-center gap-1 ">
+                        user ? <Link> <button onClick={handleLogOut} className="flex items-center gap-1 text-xl">
                             LogOut<MdLogout></MdLogout>
                         </button></Link>
                             :
                             <NavLink to="/login">
-                                <h2 className="flex items-center gap-1"><span>Login</span> <MdLogin></MdLogin></h2>
+                                <h2 className="flex items-center gap-1">Login</h2>
                             </NavLink>
                     }
                 </li>
                 <div className="pr-8">
                     {
-                        user ? <img className="h-12 w-12 rounded-full" src={user.photoURL} alt="" />
+                        user ? <img className="md:h-12 md:w-12 h-8 w-8 rounded-full" src={user.photoURL} alt="" />
                             :
                             <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
                     }

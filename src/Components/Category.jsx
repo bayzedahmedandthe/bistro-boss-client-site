@@ -9,7 +9,7 @@ import img4 from "../assets/home/slide4.jpg"
 import img5 from "../assets/home/slide5.jpg"
 const Category = () => {
     return (
-        <div className='max-w-[1000px] mx-auto pb-12'>
+        <div className='md:max-w-[1000px] max-w-[90%] mx-auto pb-12'>
             <div className=''>
                 <Swiper
                     slidesPerView={4}
