@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import img from "../assets/home/featured.jpg"
 
@@ -16,7 +17,7 @@ const ReadMore = () => {
                            Our restaurant offers a warm and inviting atmosphere with exceptional service. Our menu features fresh, locally-sourced ingredients crafted into delicious dishes. We prioritize customer satisfaction, ensuring every meal is a memorable experience. Enjoy attentive service and a delightful dining experience with us.
                     </p>
                     <button className="uppercase px-4 py-2 border-b-2 border-b-white rounded-lg hover:bg-slate-800">
-                        Read More
+                        <Link to="/orderfood/salad">Order now</Link>
                     </button>
                 </div>
             </div>

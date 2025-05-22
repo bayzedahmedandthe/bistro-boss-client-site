@@ -10,7 +10,7 @@ const Recommends = () => {
             <section>
                 <SectionTitle subHeading={"Should Try"} heading={"Recommends"}></SectionTitle>
             </section>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1000px] mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:max-w-[1000px] max-w-[90%] mx-auto">
                 {
                     popularMenu.map(item => <MenuCard key={item._id} item={item}></MenuCard>)
                 }
