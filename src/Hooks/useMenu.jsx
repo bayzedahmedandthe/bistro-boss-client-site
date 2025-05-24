@@ -8,7 +8,9 @@ const useMenu = () => {
         queryKey: "menu",
         queryFn: async() => {
             const res = await axiosPublic.get("menu");
+            console.log(res.data);
             return res.data;
+            
         }
     })
     return [menu, loading, refetch];
