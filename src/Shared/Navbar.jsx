@@ -1,18 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
-import { FaUserAlt } from "react-icons/fa";
+import { FaCaretDown, FaUserCircle } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { MdLogin, MdLogout } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 import { toast } from "react-toastify";
 import useAdmin from "../Hooks/useAdmin";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar = () => {
     const [isAdmin] = useAdmin();
     const [cart] = useCart();
     const { user, logOut } = useContext(AuthContext);
+    const [open, setOpen] = useState(false)
     // console.log(user?.photoURL);
     const handleLogOut = () => {
         logOut()
@@ -41,7 +43,7 @@ const Navbar = () => {
         }
     }
     return (
-        <div className="navbar text-white bg-opacity-40 backdrop-blur-sm fixed z-20 bg-slate-700">
+        <div className="navbar text-white bg-opacity-40 backdrop-blur-sm fixed z-20 bg-slate-700 p-0 m-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
@@ -103,15 +105,7 @@ const Navbar = () => {
                     <li className="text-xl pr-6">
                         <NavLink to="/" >Home</NavLink>
                     </li>
-                    {
-                        isAdmin ? <p className="text-xl pr-6">
-                            <button onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button>
-                        </p>
-                            :
-                            <p className="text-xl pr-6">
-                                <button onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
-                            </p>
-                    }
+
                     <li className="text-xl">
                         <NavLink to="ourmenu" >Our Menu</NavLink>
                     </li>
@@ -133,23 +127,50 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <li className="text-xl list-none pr-6">
+                {/* <li className="text-xl list-none pr-6">
                     {
-                        user ? <Link> <button onClick={handleLogOut} className="flex items-center gap-1 text-xl">
-                            LogOut<MdLogout></MdLogout>
-                        </button></Link>
+                        user ?
                             :
-                            <NavLink to="/login">
-                                <h2 className="flex items-center gap-1">Login</h2>
-                            </NavLink>
+
                     }
-                </li>
-                <div className="pr-8">
+                </li> */}
+                <div className="pr-4 pt-2 cursor-pointer relative">
+
                     {
-                        user ? <img className="md:h-12 md:w-12 h-8 w-8 rounded-full" src={user.photoURL} alt="" />
+                        user ?
+                            <button onClick={() => setOpen(!open)}>
+                                <img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="" />
+                                <div className={`duration-1000  bg-yellow-700 text-white p-8  absolute top-16 right-2 ${open ? "" : "hidden"}`}>
+                                    {
+                                        isAdmin ? <p className="">
+                                            <button className="hover:underline" onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button>
+                                        </p>
+                                            :
+                                            <p className="">
+                                                <button className="hover:underline" onClick={handleDeshBoard}><NavLink to="/deshboard/home" >Deshboard</NavLink></button>
+                                            </p>
+                                    }
+                                    <Link> <button onClick={handleLogOut} className="flex items-center gap-1 hover:underline">
+                                        LogOut<MdLogout></MdLogout>
+                                    </button></Link>
+                                </div>
+                            </button>
                             :
-                            <p className="text-3xl"> <FaUserAlt></FaUserAlt> </p>
+                            <ul>
+                                <button onClick={() => setOpen(!open)}>
+                                    <p className="text-3xl">
+                                        <FaUserCircle />
+                                    </p>
+
+                                    <div className={` duration-1000 bg-yellow-700 text-white p-8  absolute top-16 rounded-md right-2 ${open ? "" : "hidden"}`}>
+                                        <NavLink to="/login">
+                                            <h2 className=" hover:underline">Login</h2>
+                                        </NavLink>
+                                    </div>
+                                </button>
+                            </ul>
                     }
+                   <p className="flex items-center justify-center absolute -bottom-2 left-[6px]"> <FaCaretDown /></p>
                 </div>
             </div>
         </div>
