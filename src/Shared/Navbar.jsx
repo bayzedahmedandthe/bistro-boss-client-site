@@ -15,7 +15,7 @@ const Navbar = () => {
     const [cart] = useCart();
     const { user, logOut } = useContext(AuthContext);
     const [open, setOpen] = useState(false)
-    // console.log(user?.photoURL);
+    console.log(user?.photoURL);
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -62,7 +62,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow bg-slate-800">
+                        className="menu menu-sm dropdown-content  rounded-md z-[1] mt-3 w-52 p-2 ml-5 shadow bg-slate-800">
                         <li className="text-xl  pr-6">
                             <NavLink to="/">Home</NavLink>
                         </li>
@@ -100,16 +100,16 @@ const Navbar = () => {
                 </div>
                 <Link to="/" className="md:pl-4 pl-0 text-xl cursor-pointer">Bistro Boss</Link>
             </div>
-            <div className="navbar-center hidden lg:flex items-center lg:ml-[350px]">
+            <div className="navbar-center hidden lg:flex items-center lg:ml-[700px]">
                 <ul className="menu-horizontal text-white px-8">
-                    <li className="text-xl pr-6">
+                    <li className="pr-6">
                         <NavLink to="/" >Home</NavLink>
                     </li>
 
-                    <li className="text-xl">
+                    <li className="">
                         <NavLink to="ourmenu" >Our Menu</NavLink>
                     </li>
-                    <li className="text-xl pl-6">
+                    <li className=" pl-6">
                         <NavLink to="/orderfood/salad" className={({ isActive }) => {
                             return isActive ? "text-[#EEFF25] underline" : "";
                         }}>Order Food</NavLink>
@@ -117,9 +117,9 @@ const Navbar = () => {
                     <li>
                         <button onClick={handleCart}>
                             <Link to="/deshboard/mycart">
-                                <div className="pl-4 relative">
-                                    <span className="text-3xl"><BsCart3 /></span>
-                                    <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-2">+{cart.length}</p>
+                                <div className="pl-4 pt-1 relative">
+                                    <span className="text-xl"><BsCart3 /></span>
+                                    <p className="bg-[#EEFF25] text-center text-black rounded-full absolute top-4 -right-5 px-1">+{cart.length}</p>
                                 </div>
                             </Link>
                         </button>
@@ -127,20 +127,14 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* <li className="text-xl list-none pr-6">
-                    {
-                        user ?
-                            :
 
-                    }
-                </li> */}
-                <div className="pr-4 pt-2 cursor-pointer relative">
+                <div className="pr-4 cursor-pointer relative">
 
                     {
                         user ?
                             <button onClick={() => setOpen(!open)}>
                                 <img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="" />
-                                <div className={`duration-1000  bg-yellow-700 text-white p-8  absolute top-16 right-2 ${open ? "" : "hidden"}`}>
+                                <div className={`bg-slate-800 text-white p-8 absolute top-16 right-2 ${open ? "" : "hidden"}`}>
                                     {
                                         isAdmin ? <p className="">
                                             <button className="hover:underline" onClick={handleDeshBoard}><NavLink to="/deshboard/homeAdmin" >Deshboard</NavLink></button>
@@ -162,7 +156,7 @@ const Navbar = () => {
                                         <FaUserCircle />
                                     </p>
 
-                                    <div className={` duration-1000 bg-yellow-700 text-white p-8  absolute top-16 rounded-md right-2 ${open ? "" : "hidden"}`}>
+                                    <div className={`bg-slate-800 text-white p-8 absolute top-16 right-2 ${open ? "" : "hidden"}`}>
                                         <NavLink to="/login">
                                             <h2 className=" hover:underline">Login</h2>
                                         </NavLink>

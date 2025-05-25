@@ -57,7 +57,7 @@ const MenuCard = ({ item }) => {
                 <p className="bg-black text-white px-4 absolute right-4 top-4">${item.price}</p>
             </div>
             <h3 className="text-2xl font-medium py-4 text-center">{item.name}</h3>
-            <p className="text-center ">{item.recipe}</p>
+            <p className="text-center px-2">{item.recipe}</p>
             <div className="flex justify-center">
                 <button
                     onClick={ handleAddToCart }
