@@ -7,7 +7,7 @@ const PopularMenu = () => {
     const popularMenu = menu.filter(item => item.category === "popular");
     return (
         <div>
-                <MenuItemCard items={popularMenu}></MenuItemCard>
+                <MenuItemCard items={popularMenu} title="salad"></MenuItemCard>
         </div>
     );
 };

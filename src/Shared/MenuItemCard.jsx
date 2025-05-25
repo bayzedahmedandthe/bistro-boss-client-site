@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-const MenuItemCard = ({ items, }) => {
+const MenuItemCard = ({ items, title }) => {
+    console.log(items?.category);
     return (
         <div>
             <div className="md:max-w-[1000px] max-w-[90%] mx-auto grid md:grid-cols-2 gap-4 mt-16">
@@ -19,7 +20,7 @@ const MenuItemCard = ({ items, }) => {
                 }
             </div>
             <div className="flex justify-center  py-14">
-                <Link to="/orderfood/salad">
+                <Link to={`/orderfood/${title}`}>
                     <button className="uppercase text-xl font-medium px-12 py-2 border-b-black border-b-4 hover:text-yellow-700  text-center rounded-2xl ">Order Your Favorite Food</button>
                 </Link>
             </div>

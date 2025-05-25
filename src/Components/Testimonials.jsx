@@ -7,18 +7,22 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import { useEffect, useState } from "react";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Testimonials = () => {
+ const customAxios = useAxiosPublic()
     const [rating, setRating] = useState([]);
     useEffect(() => {
-        fetch("/reviews")
-            .then(res => res.json())
-            .then(data => setRating(data))
-    }, [])
+       customAxios.get("/reviews")
+       .then(res => {
+        setRating(res.data)
+       })
+    }, []);
+    console.log(rating)
     return (
         <div className="max-w-[1000px] mx-auto pb-12">
             <section>
-                <SectionTitle subHeading={"What nOur Client Say"} heading={"Testimonials"}></SectionTitle>
+                <SectionTitle subHeading={"What Our Client Say"} heading={"Testimonials"}></SectionTitle>
             </section>
             <Swiper
                 cssMode={true}
