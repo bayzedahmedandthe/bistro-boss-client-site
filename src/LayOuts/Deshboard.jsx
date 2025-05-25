@@ -11,8 +11,8 @@ import useAdmin from "../Hooks/useAdmin";
 const Deshboard = () => {
     const [isAdmin] = useAdmin();
     return (
-        <div className="md:flex">
-            <div className="bg-[#D1A054] min-h-screen md:w-1/5 w-3/12">
+        <div className="flex">
+            <div className="bg-[#D1A054] min-h-screen md:w-1/5 w-3/12 md:pl-0 pl-1">
                 {
                     isAdmin ?
                         <>

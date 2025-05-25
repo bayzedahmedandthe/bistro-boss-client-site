@@ -16,12 +16,12 @@ const UserHome = () => {
     const userImage = user?.photoURL;
     const userName = user?.displayName;
     return (
-        <div className="md:m-6">
+        <div className="md:m-6 m-2">
             {/* firest part */}
-            <div className='md:flex justify-between'>
+            <div className='flex justify-between'>
                 {/* menu */}
                 <div className='bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF]'>
-                    <div className='flex items-center justify-center gap-4 px-28 py-8 rounded-md'>
+                    <div className='md:flex items-center justify-center gap-4 md:px-28 md:py-8 px-5 py-4 rounded-md'>
                         <img src={wallet} alt="" />
                         <div>
                             <p className="text-white text-2xl font-semibold">{totalMenu}</p>
@@ -31,7 +31,7 @@ const UserHome = () => {
                 </div>
                 {/* shop */}
                 <div className='bg-gradient-to-r from-[#D3A256] to-[#FDE8C0]'>
-                    <div className='flex items-center justify-center gap-4 px-28 py-8 rounded-md'>
+                    <div className='md:flex items-center justify-center gap-4 md:px-28 md:py-8 px-5 py-4 rounded-md'>
                         <img src={store} alt="" />
                         <div>
                             <p className="text-white text-2xl font-semibold">15</p>
@@ -41,7 +41,7 @@ const UserHome = () => {
                 </div>
                 {/* contact */}
                 <div className='bg-gradient-to-r from-[#FE4880] to-[#FECDE9]'>
-                    <div className='flex items-center justify-center gap-4 px-28 py-8 rounded-md'>
+                    <div className='md:flex items-center justify-center gap-4 md:px-28 md:py-8 px-5 py-4 rounded-md'>
                         <img src={group} alt="" />
                         <div>
                             <p className="text-white text-2xl font-semibold">03</p>
@@ -51,14 +51,14 @@ const UserHome = () => {
                 </div>
             </div>
             {/* Secend part */}
-            <div className="flex mt-6">
-                <div className="bg-[#FFEDD5] flex-1 md:flex items-center justify-center md:py-20 border-r-2 border-r-yellow-500">
+            <div className="md:flex md:mt-6 mt-2">
+                <div className="bg-[#FFEDD5] flex-1 md:flex items-center justify-center md:py-20 md:p-0 p-4 border-r-2 border-r-yellow-500">
                     <div>
-                        <img className="border-[#D1A054] rounded-full" src={userImage} alt="" />
-                        <p className="md:text-2xl text-xl text-center font-semibold py-4">{userName}</p>
+                        <img className="border-[#D1A054] border rounded-full" src={userImage} alt="" />
+                        <p className="md:text-2xl text-xl font-semibold py-6">{userName}</p>
                     </div>
                 </div>
-                <div className="flex-1 bg-[#FEF9C3] p-12">
+                <div className="flex-1 bg-[#FEF9C3] md:p-12 p-4 md:mt-0 mt-2">
                     <h3 className="md:text-2xl text-xl font-semibold pb-4">Your Activites</h3>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
