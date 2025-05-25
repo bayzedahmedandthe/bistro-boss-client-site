@@ -51,10 +51,10 @@ const MenuCard = ({ item }) => {
         }
     }
     return (
-        <div className="bg-slate-100">
+        <div className="bg-slate-100 ">
             <div className="relative">
                 <img src={item.image} alt="" />
-                <p className="bg-black text-white px-4 absolute right-4 top-4">${item.price}</p>
+                <p className="bg-black text-white px-4 absolute md:right-4 md:top-4 top-4 right-8">${item.price}</p>
             </div>
             <h3 className="text-2xl font-medium py-4 text-center">{item.name}</h3>
             <p className="text-center px-2">{item.recipe}</p>

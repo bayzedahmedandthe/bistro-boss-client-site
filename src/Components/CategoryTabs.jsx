@@ -16,8 +16,8 @@ const CategoryTabs = ({category}) => {
     const pizza = menu.filter(item => item.category === "pizza");
     const drinks = menu.filter(item => item.category === "drinks");
     return (
-        <div className="py-16 max-w-[1000px] mx-auto">
-            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+        <div className="py-16 md:max-w-[1000px] mx-auto">
+            <Tabs className="md:pl-0 pl-3" selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab>SALAD</Tab>
                     <Tab>PIZZA</Tab>
