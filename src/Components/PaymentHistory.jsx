@@ -15,7 +15,7 @@ const PaymentHistory = () => {
     })
     return (
         <div>
-            <h2>{data.length}</h2>
+            <h2>{data?.length}</h2>
         </div>
     );
 };
