@@ -5,6 +5,7 @@ const axiosPublic = axios.create({
     withCredentials: true
 })
 const useAxiosPublic = () => {
+    
     return axiosPublic;
 };
 
