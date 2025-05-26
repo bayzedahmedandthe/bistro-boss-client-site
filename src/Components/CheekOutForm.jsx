@@ -113,7 +113,6 @@ const CheekOutForm = () => {
                     <button className="md:px-8 py-2 px-4 border-2 mt-8 bg-[#D1A054] btn" type="submit" disabled={!stripe || !clientSecret}>
                         Pay
                     </button>
-                    <p className="text-gray-600 border-b-2 mt-8"><span className="text-black font-bold">Your Transaction Id: </span>{transactionId}</p>
                 </div>
             </form>
         </div>
